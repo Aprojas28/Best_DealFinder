@@ -1,0 +1,69 @@
+<h1>USUARIOS</h1>
+
+<button class="btn btn-primary" (click)="mostrar (1)">Insertar usuario</button><br><br>
+
+<div id="formulario" *ngIf="verf==true">
+    <div class="row">
+        <div class="col-lg-6">
+            <input type="text" id="nombre" class="form-control" [(ngModel)]="user.Nombre"><br>
+            <span style="color: red" *ngIf="validnombre==false">Insertar Nombre</span>
+        </div>
+        <div class="col-lg-6">
+            <input type="email" id="usuario" class="form-control" [(ngModel)]="user.Usuario"><br>
+            <span style="color: red" *ngIf="validusuario==false">Insertar Usuario</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <input type="password" id="clave" class="form-control" [(ngModel)]="user.Clave"><br>
+            <span style="color: red" *ngIf="validclave==false">Insertar Contraseña</span>
+        </div>
+        <div class="col-lg-6">
+            <select id="tipo" class="form-control form-select" [(ngModel)]="user.Tipo">
+                <option value="Administrador" label="Administrador">Administrador</option>
+                <option value="General" label="General">General</option>
+            </select><br>
+            <span style="color: red" *ngIf="validtipo==false">Elegir tipo de usuario</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-3">
+            <button class="btn btn-primary" (click)="ingresar()">Guardar</button>
+        </div>
+        <div class="col-lg-3">
+            <button class="btn btn-secondary" (click)="mostrar(0)">Cancelar</button>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+
+</div>
+
+<br>
+<div class="table-responsive">
+    <table class="table table-success table-striped" border="1">
+        <tr>
+            <th>Nombre</th>
+            <th>Usuario</th>
+            <th>Tipo</th>
+            <th>Acciones</th>
+        </tr>
+        <!--mostrar usuarios-->
+        <tr *ngFor="let item of usuario">
+            <td>{{item.Nombre}}</td>
+            <td>{{item.Usuario}}</td>
+            <td>{{item.Tipo}}</td>
+            <td>
+                <a>
+                    <span class="fas fa-edit editar" title="Editar"></span>
+                </a>
+
+                <a (click)="pregunta(item.ID_Usuario, item.Nombre)">
+                    <span class="fas fa-trash-alt eliminar" title="Eliminar"></span>
+                </a>
+            </td>
+
+
+        </tr>
+    </table>
+</div>

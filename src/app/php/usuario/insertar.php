@@ -9,7 +9,7 @@ $params = json_decode ($json);
 require ("../conexion.php");
 
 //$ins = "insert into usuario (usuario, nombre, clave, tipo) values ('Prueba', 'prueba', sha1 ('123456'), 'Invitado')";
-$ins = "insert into usuario (usuario, nombre, clave, tipo) values ('$params->usuario', '$params->nombre', shal('$params->clave'), '$params->tipo')";
+$ins = "insert into usuario (usuario, nombre, clave, tipo) values ('$params->Usuario', '$params->Nombre', sha1('$params->Clave'), '$params->Tipo')";
 
 mysqli_query($conexion, $ins) or die ('no inserto');
 

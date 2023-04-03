@@ -4,7 +4,7 @@ header ("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, A
 
 require ("../conexion.php");
 
-$del = "DELETE FROM usuario WHERE id_usuario=".$_GET ['id'];
+$del = "DELETE FROM usuario WHERE ID_Usuario=".$_GET ['id'];
 mysqli_query($conexion, $del) or die ("No elimino");
 
 
