@@ -5,10 +5,11 @@ header ("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, A
 $json = file_get_contents ('php://input');
 
 $params = json_decode ($json);
+$id = $_GET ['id'];
 
 require("../conexion.php");
 
-$editar = "UPDATE usuario SET usuario='$params->usuario', nombre='$params->nombre', clave=sha1('$params->clave'), tipo='$params->tipo' WHERE id_usuario=$params->id_usuario";
+$editar = "UPDATE usuario SET usuario='$params->Usuario', nombre='$params->Nombre', clave=sha1('$params->Clave'), tipo='$params->Tipo' WHERE ID_Usuario=$id";
 
 mysqli_query($conexion, $editar) or die ('No edito');
 

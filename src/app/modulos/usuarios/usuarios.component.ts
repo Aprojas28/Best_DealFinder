@@ -12,6 +12,7 @@ export class UsuariosComponent implements OnInit {
   //variables globales
   verf =false;
   usuario:any;
+  iduser: any;
   user = {
     Usuario:"",
     Nombre:"",
@@ -23,6 +24,7 @@ validnombre=true;
 validusuario=true;
 validclave=true;
 validtipo=true;
+beditar=false;
 
   constructor (private suser: UsuarioService) {}
 
@@ -36,6 +38,9 @@ validtipo=true;
     switch (dato){
     case 0:
       this.verf = false;
+      this.beditar=false;
+      this.iduser="";
+      this.limpiar();
     break;
     case 1:
       this.verf =true;
@@ -125,15 +130,38 @@ validtipo=true;
     })
   }
 
-
   borrarusuario(id:any){
     console.log (id);
 
     this.suser.eliminar (id). subscribe ((datos:any) => {
       if (datos['resultado'] == 'OK' ){
-         
         this.consulta();
       }
     });
+  }
+  cargardatos (datos:any, id:number){
+    //console.log (datos);
+    this.user.Nombre = datos.Nombre;
+    this.user.Usuario = datos.Usuario;
+    this.user.Clave = datos.Clave;
+    this.user.Tipo = datos.Tipo;
+    this.iduser = id;
+    this.mostrar (1); 
+    this.beditar=true;
+
+  }
+  editar (){
+    //console.log (this.cat);
+    this.validar();
+
+    if (this.validnombre== true && this.validusuario == true && this. validclave== true && this.validtipo==true){
+      this.suser.edit(this.user, this.iduser).subscribe((datos:any)=>{
+        if (datos['resultado']=='OK') {
+          //alert (datos['mensaje']);
+          this.consulta();
+        }
+      });
+      this.mostrar(0);
+    }
   }
 }

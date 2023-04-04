@@ -29,7 +29,8 @@
     <div class="row">
         <div class="col-lg-3"></div>
         <div class="col-lg-3">
-            <button class="btn btn-primary" (click)="ingresar()">Guardar</button>
+            <button *ngIf="beditar==false" class="btn btn-primary" (click)="ingresar()">Guardar</button>
+            <button *ngIf="beditar==true" class="btn btn-primary" (click)="editar()">Editar</button>
         </div>
         <div class="col-lg-3">
             <button class="btn btn-secondary" (click)="mostrar(0)">Cancelar</button>
@@ -54,7 +55,7 @@
             <td>{{item.Usuario}}</td>
             <td>{{item.Tipo}}</td>
             <td>
-                <a>
+                <a (click)="cargardatos (item, item.ID_Usuario)">
                     <span class="fas fa-edit editar" title="Editar"></span>
                 </a>
 
@@ -62,8 +63,6 @@
                     <span class="fas fa-trash-alt eliminar" title="Eliminar"></span>
                 </a>
             </td>
-
-
         </tr>
     </table>
 </div>
